@@ -6,8 +6,8 @@ import io
 
 app = Flask(__name__)
 
-# import ssl
-# ssl._create_default_https_context = ssl._create_unverified_context # 報錯請加這兩行，不驗證SSL證書
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context # 報錯請加這兩行，不驗證SSL證書
 @app.route('/')
 def index():
     html = requests.get('https://data.gov.tw/dataset/34811')
@@ -33,5 +33,6 @@ def index():
             else:
                 y.append(0)
     return render_template('index.html', title=latest, x=x, y=y)
+
 
 app.run('0.0.0.0', debug=True)
