@@ -6,11 +6,11 @@ import io
 
 app = Flask(__name__)
 
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context # 報錯請加這兩行，不驗證SSL證書
+# import ssl
+# ssl._create_default_https_context = ssl._create_unverified_context # 報錯請加這兩行，不驗證SSL證書
 @app.route('/')
 def index():
-    html = requests.get('https://data.gov.tw/dataset/34811')
+    html = requests.get('https://data.gov.tw/dataset/34811', verify=False)
     soup = BeautifulSoup(html.text, 'html.parser')
     # 找出所有 <a> 且有 title 屬性的
     links = soup.find_all('a', attrs={'title': True})
@@ -36,3 +36,4 @@ def index():
 
 
 app.run('0.0.0.0', debug=True)
+
