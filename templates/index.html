@@ -21,17 +21,16 @@
     </style>
 </head>
 <body>
-    <div id="title">花蓮最新空氣品質 {{title}}</div>
-    <div id="plot"></div>
+    <div id="title">{{title}}</div>
+    <div id="bar"></div>
     <py-script>
         import matplotlib.pyplot as plt
         from pyscript import display
-        plt.plot({{x|tojson}}, {{y|tojson}}, label='Air')
-        plt.legend()
-        plt.title('Hualien Air Quality')
-        plt.xlabel('Gas')
-        plt.ylabel('Amount')
-        display(plt, target="plot")
+        plt.bar({{x|tojson}}, {{y|tojson}})
+        plt.title('NDHU Donation List')
+        plt.xlabel('Day')
+        plt.ylabel('NTD')
+        display(plt, target="bar")
     </py-script>
 </body>
 </html>
