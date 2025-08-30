@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+    <py-config>
+        packages = ["matplotlib"]
+    </py-config>
+    <style>
+        body {
+            background-color: beige;
+        }
+        #title {
+            font-size: 24px;
+            color: chocolate;
+            font-family: Arial, Helvetica, sans-serif
+        }
+    </style>
+</head>
+<body>
+    <div id="title">花蓮最新空氣品質 {{title}}</div>
+    <div id="plot"></div>
+    <py-script>
+        import matplotlib.pyplot as plt
+        from pyscript import display
+        plt.plot({{x|tojson}}, {{y|tojson}}, label='Air')
+        plt.legend()
+        plt.title('Hualien Air Quality')
+        plt.xlabel('Gas')
+        plt.ylabel('Amount')
+        display(plt, target="plot")
+    </py-script>
+</body>
+</html>
